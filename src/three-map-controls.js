@@ -458,7 +458,11 @@ class MapControls extends THREE.EventDispatcher{
             mouse.x = ( centerpoint.x / domElement.clientWidth ) * 2 - 1;
             mouse.y = - ( centerpoint.y / domElement.clientHeight ) * 2 + 1;
 
-            this._updateDollyTrack(mouse);
+            var raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(mouse, this.camera);
+
+
+            this._updateDollyTrack(raycaster.ray);
         }
 
         _handleTouchStartDolly( event ) {
